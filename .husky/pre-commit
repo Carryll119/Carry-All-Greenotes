@@ -1,1 +1,8 @@
 npx --no-install lint-staged
+
+# 如果修改了 blog 文件，自动生成 tags
+if git diff --cached --name-only | grep -q "data/blog/.*\.mdx$"; then
+  echo "📝 Blog files changed, generating tags..."
+  yarn generate:tags
+  git add app/tag-data.json
+fi
