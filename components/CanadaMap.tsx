@@ -176,15 +176,11 @@ export default function CanadaMap() {
   }
 
   return (
-    <div className="my-8 w-full max-w-3xl mx-auto">
-      <div className="relative bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-lg overflow-hidden">
+    <div className="mx-auto my-8 w-full max-w-3xl">
+      <div className="relative overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800">
         {/* 地图容器 */}
-        <div className="w-full map-container" style={{ height: '500px' }}>
-          <svg
-            viewBox="0 0 2200 600"
-            className="w-full h-full"
-            preserveAspectRatio="xMidYMid meet"
-          >
+        <div className="map-container w-full" style={{ height: '500px' }}>
+          <svg viewBox="0 0 2200 600" className="h-full w-full" preserveAspectRatio="xMidYMid meet">
             {/* 背景 */}
             <rect width="2200" height="600" fill="#FFFFFF" className="dark:fill-gray-900" />
 
@@ -218,7 +214,7 @@ export default function CanadaMap() {
                   <text
                     x={province.labelX}
                     y={province.labelY}
-                    className="text-sm font-medium fill-gray-800 dark:fill-gray-200 pointer-events-none"
+                    className="pointer-events-none fill-gray-800 text-sm font-medium dark:fill-gray-200"
                     textAnchor="middle"
                     style={{ textShadow: '0 1px 2px rgba(255,255,255,0.9)' }}
                   >
@@ -243,7 +239,7 @@ export default function CanadaMap() {
                 <text
                   x={city.x}
                   y={city.y - 12}
-                  className="text-xs font-medium fill-gray-800 dark:fill-gray-200 pointer-events-none"
+                  className="pointer-events-none fill-gray-800 text-xs font-medium dark:fill-gray-200"
                   textAnchor="middle"
                   style={{ textShadow: '0 1px 2px rgba(255,255,255,0.9)' }}
                 >
@@ -256,18 +252,20 @@ export default function CanadaMap() {
 
         {/* 信息卡片 */}
         {selectedProvince && (
-          <div className="absolute bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 p-4 shadow-lg z-10">
+          <div className="absolute right-0 bottom-0 left-0 z-10 border-t border-gray-200 bg-white p-4 shadow-lg dark:border-gray-700 dark:bg-gray-800">
             <div className="flex items-start justify-between">
               <div className="flex-1">
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-1">
+                <h3 className="mb-1 text-lg font-semibold text-gray-900 dark:text-gray-100">
                   {selectedProvince.name}
                 </h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">{selectedProvince.nameZh}</p>
+                <p className="mb-3 text-sm text-gray-500 dark:text-gray-400">
+                  {selectedProvince.nameZh}
+                </p>
                 <div className="flex flex-wrap gap-2">
                   {selectedProvince.industries.map((industry, index) => (
                     <span
                       key={index}
-                      className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200"
+                      className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-200"
                     >
                       {industry}
                     </span>
@@ -276,10 +274,10 @@ export default function CanadaMap() {
               </div>
               <button
                 onClick={() => setSelectedProvince(null)}
-                className="ml-4 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
+                className="ml-4 text-gray-400 transition-colors hover:text-gray-600 dark:hover:text-gray-300"
                 aria-label="关闭"
               >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -293,8 +291,8 @@ export default function CanadaMap() {
         )}
 
         {/* 图例 */}
-        <div className="absolute top-4 right-4 bg-white/95 dark:bg-gray-800/95 backdrop-blur-sm rounded-lg p-3 shadow-md border border-gray-200 dark:border-gray-700">
-          <p className="text-xs font-medium text-gray-700 dark:text-gray-300 mb-1">操作提示</p>
+        <div className="absolute top-4 right-4 rounded-lg border border-gray-200 bg-white/95 p-3 shadow-md backdrop-blur-sm dark:border-gray-700 dark:bg-gray-800/95">
+          <p className="mb-1 text-xs font-medium text-gray-700 dark:text-gray-300">操作提示</p>
           <p className="text-xs text-gray-500 dark:text-gray-400">点击省份查看详情</p>
         </div>
       </div>
